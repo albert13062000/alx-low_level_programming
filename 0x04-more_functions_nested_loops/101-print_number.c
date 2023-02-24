@@ -1,83 +1,47 @@
-#include "main`.h"
-
-
-int _pow(int a, int b);
+#include "main.h"
 
 /**
- * print_number - print the given number.
- * @n: number to print.
+ * print_number - Function that prints an integer.
+ * @n: int type number
+ * Description: Can only use _putchar to print.
  */
 void print_number(int n)
 {
-	int collection = n;
-	unsigned int new_num;
-	int count = 0;
-	int print = 0;
+	long m; /* power of 10 */
+	int c; /* boolean check */
+	long num; /* convert int to long */
 
-	if (n < 0)
+	num = n;
+	/* negatives */
+	if (num < 0)
 	{
-		new_num = -n;
+		num *= -1;
 		_putchar('-');
 	}
-	else
+
+	/* count up */
+	m = 1;
+	c = 1;
+	while (c)
 	{
-		new_num = n;
+		if (num / (m * 10) > 0)
+			m *= 10;
+		else
+			c = 0;
 	}
 
-	while (collection != 0)
+	/* count down */
+	while (num >= 0)
 	{
-		collection /= 10;
-		++count;
-	}
-	count -= 1;
-
-	do {
-		if ((new_num / (_pow(10, count)) > 9) && count > 1)
+		if (m == 1)
 		{
-			print = new_num / (_pow(10, count));
-			print = print % 10;
-			_putchar('0' + print);
-		}
-		else if (count > 1)
-		{
-			print = (new_num / _pow(10, count));
-		       _putchar('0' + print);
-		}
-		else if (((new_num / 10) > 9) && count == 1)
-		{
-			print = (new_num / 10) % 10;
-			_putchar('0' + print);
-		}
-		else if (count == 1)
-		{
-			print = new_num / 10;
-			_putchar('0' + print);
+			_putchar(num % 10 + '0');
+			num = -1;
 		}
 		else
 		{
-			print = new_num % 10;
-			_putchar('0' + print);
+			_putchar((num / m % 10) + '0');
+			m /= 10;
 		}
-		count--;
-	} while (count > -1);
-}
-
-/**
- * _pow - power fuction
- * @a: value to use.
- * @b: growth count
- *
- * Return: value int.
- */
-int _pow(int a, int b)
-{
-	int i;
-	int p = a;
-
-	for (i = 1 ; i < b ; i++)
-	{
-		a *= p;
 	}
-	return (a);
 }
-
