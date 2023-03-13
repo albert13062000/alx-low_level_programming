@@ -1,5 +1,3 @@
-README.md file
-
 
 C - argc, argv
 		
